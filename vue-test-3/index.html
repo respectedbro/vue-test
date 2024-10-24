@@ -3,46 +3,45 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Vue Basics</title>
+    <title>Counter</title>
     <link rel="stylesheet" href="theme.css"/>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-<div class="container" id="app">
-    <div class="card">
-        <h1 :style="{
-            color: inputValue.length < 5 ? 'darkred' : 'darkblue',
-             fontSize: inputValue.length < 6 ? '2rem' : '1.5rem'
-        }">{{ title }}</h1>
-        <div class="form-control">
-            <input
-                    type="text"
-                    :placeholder="placeholderString"
-                    :value="inputValue"
-                    v-model="inputValue"
-                    @keydown.enter="addNewNote"
-            />
-        </div>
-        <button class="btn" @click="addNewNote">Добавить</button>
-        <hr />
-        <ul class="list" v-if="notes.length !== 0">
-            <li class="list-item" v-for="(note, i) in notes">
-<!--               <span :class="note.length > 5 ? 'primary' : 'bold'">{{i + 1 + ')' + ' '}}  {{toUpperCase(note)}}</span>-->
-<!--               <span :class="{-->
-<!--                   'primary' : true,-->
-<!--                   'bold' : note.length > 5-->
-<!--               }">{{i + 1 + ')' + ' '}}  {{toUpperCase(note)}}</span>-->
-                <span :class="['bold', {'primary' : note.length > 5}]">{{i + 1 + ')' + ' '}}  {{toUpperCase(note)}}</span>
-                <button class="btn danger" @click="removeNode(i)">Удалить</button>
-            </li>
-            <li>
-            <hr />
-                <strong>Общее количество: {{notes.length}}</strong> | Удвоенное: {{doubleCountComputed}}
-            </li>
+<div class="container pt-5" id="app" v-cloak>
+    <div class="card center">
+        <div v-html="myHtml"></div>
+        <!--        <h2 v-text="title"></h2>-->
+        <!--        <h2 v-once>{{ title }}</h2>-->
+        <!--        <h2 v-pre>{{title}}</h2>-->
+
+        <!--        <button-->
+        <!--                class="btn"-->
+        <!--                @click="title = 'теперь другое'"-->
+        <!--        >-->
+        <!--            Изменить-->
+        <!--        </button>-->
+
+        <ul class="list">
+                        <li
+                                class="list-item"
+                                v-for="(item, i) in items"
+                                @click="items.splice(i, 1)"
+                        >
+                            <strong>{{item}}</strong>
+                        </li>
+
+<!--            <li class="list-item" v-for="(value, key) in person">-->
+<!--            <strong>{{key}}</strong> {{ value }}-->
+<!--            </li>-->
         </ul>
-        <div v-else>Заметок пока нет. Добавте новую</div>
+
     </div>
 </div>
-
 
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script src="app.js"></script>
