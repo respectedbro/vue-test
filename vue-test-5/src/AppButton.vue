@@ -15,6 +15,11 @@ export default {
         return ['', 'primary', 'danger'].includes(value)
       }
     }
+  },
+  methods: {
+    btnLog() {
+      console.log('Button log')
+    }
   }
 }
 </script>

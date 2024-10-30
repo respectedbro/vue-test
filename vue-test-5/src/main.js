@@ -1,7 +1,8 @@
-import { createApp } from "vue";
+import { createApp,defineAsyncComponent } from "vue";
 import App from "./App.vue";
 import TheHeader from "@/TheHeader.vue";
 import "./theme.css";
+
 
 
 //App -> AppNews -> AppNewsList
@@ -10,6 +11,9 @@ const app = createApp(App);
 
 //global
 app.component("the-header", TheHeader);
+app.component('async-component', defineAsyncComponent(() => {
+   return import('./AppAsyncComponent.vue')
+}))
 
 app.mount("#app");
 

@@ -1,11 +1,23 @@
 <template>
   <div class="card">
-    <h3>title</h3>
+    <slot name="header"></slot>
+    <slot name="default">
+      No text
+    </slot>
+
+    <div v-if="$slots.footer">
+      <slot name="footer"></slot>
+    </div>
+
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  mounted() {
+    console.log(this.$slots)
+  }
+}
 </script>
 
 <style lang="scss" scoped>
