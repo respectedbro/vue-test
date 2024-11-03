@@ -14,8 +14,9 @@
 
 <script>
 import ResumeTitle from "@/components/parts/ResumeTitle.vue";
+import ResumeSubtitle from "@/components/parts/ResumeSubtitle.vue";
 export default {
-  components: {ResumeTitle},
+  components: {ResumeTitle, ResumeSubtitle},
   props: ['blocks'],
 }
 </script>
