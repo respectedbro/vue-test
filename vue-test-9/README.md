@@ -2,6 +2,7 @@
 
 $env:NODE_OPTIONS="--openssl-legacy-provider"
 npm run serve
-25/48
-Миксины Директивы плагины
+
+Миксины Директивы плагины. Смена языка
+Модальное окно с Teleport
 
