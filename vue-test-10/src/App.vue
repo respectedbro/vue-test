@@ -1,5 +1,5 @@
 <template>
-  <the-navbar></the-navbar>
+  <the-navbar :visible="isAuth"></the-navbar>
   <div class="container with-nav">
     <router-view></router-view>
   </div>
@@ -12,17 +12,26 @@ export default {
   components: {TheNavbar},
   data() {
     return {
-      isAuth: false
+      isAuth: true
     }
   },
   methods: {
     login() {
       this.isAuth = true
-      this.$router.push('/dashboard')
+      if(this.$route.query.page) {
+        this.$router.push(this.$route.query.page)
+      } else {
+        this.$router.push('/dashboard')
+      }
     },
     logout() {
       this.isAuth = false
-      this.$router.push('/login')
+      this.$router.push({
+        path: '/login',
+        query: {
+          page:this.$route.path
+        }
+      })
     }
   },
   provide() {

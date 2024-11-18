@@ -36,7 +36,6 @@ export default {
   methods: {
     submit() {
       if (this.isValid) {
-        this.$router.replace('/dashboard')
         this.login()
       }
     }
