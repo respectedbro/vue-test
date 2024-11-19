@@ -1,0 +1,30 @@
+<template>
+  <the-navbar></the-navbar>
+  <div class="container with-nav">
+    <div class="card">
+      <h1>{{ uppercaseTitle }}</h1>
+      <h2>Счетчик {{ counter }} ( {{ doubleCounter }} )</h2>
+      <button class="primary btn" @click="add">ДОБАВИТЬ</button>
+      <button class="danger btn" @click="incrementAsync({
+        value: 10,
+        delay: 200
+      })">ДОБАВИТЬ 10</button>
+    </div>
+  </div>
+</template>
+
+<script>
+import {mapGetters, mapMutations, mapActions} from "vuex";
+import TheNavbar from './TheNavbar'
+
+export default {
+  components: {TheNavbar},
+  computed: mapGetters(['counter', 'doubleCounter', 'uppercaseTitle']),
+  methods: {
+    ...mapMutations({
+      add: 'increment'
+    }),
+    ...mapActions(['incrementAsync']),
+  }
+}
+</script>
