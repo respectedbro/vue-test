@@ -15,11 +15,11 @@ export default {
     //   return this.$store.getters.counter
     // },
     // ниже строчка повторяет весь функционал с помощью vuex mapеров:
-    ...mapGetters(['counter'])
+    ...mapGetters('count',['counter'])
   },
   methods: {
     ...mapMutations({
-      addFive: 'add'
+      addFive: 'count/add'
     }),
     add() {
       this.addFive({

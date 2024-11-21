@@ -8,7 +8,8 @@
       <button class="danger btn" @click="incrementAsync({
         value: 10,
         delay: 200
-      })">ДОБАВИТЬ 10</button>
+      })">ДОБАВИТЬ 10
+      </button>
     </div>
   </div>
 </template>
@@ -19,12 +20,16 @@ import TheNavbar from './TheNavbar'
 
 export default {
   components: {TheNavbar},
-  computed: mapGetters(['counter', 'doubleCounter', 'uppercaseTitle']),
+  // computed: mapGetters(['counter', 'doubleCounter', 'uppercaseTitle']),
+  computed: {
+    ...mapGetters(['uppercaseTitle']),
+    ...mapGetters('count', ['counter', 'doubleCounter'])
+  },
   methods: {
     ...mapMutations({
-      add: 'increment'
+      add: 'count/increment'
     }),
-    ...mapActions(['incrementAsync']),
+    ...mapActions('count',['incrementAsync']),
   }
 }
 </script>
