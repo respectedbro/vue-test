@@ -19,10 +19,10 @@
 
 <script>
 import {ref} from 'vue'
-import AppPage from "../components/ui/AppPage.vue";
-import RequestTable from "../components/request/RequestTable.vue";
-import RequestModal from "@/components/request/RequestModal.vue";
-import AppModal from "@/components/ui/AppModal.vue";
+import AppPage from "../components/ui/AppPage.vue"
+import RequestTable from "../components/request/RequestTable.vue"
+import RequestModal from "@/components/request/RequestModal.vue"
+import AppModal from "@/components/ui/AppModal.vue"
 
 export default {
   components: {AppPage, RequestTable, AppModal, RequestModal},
