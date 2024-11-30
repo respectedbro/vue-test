@@ -1,37 +1,49 @@
 <template>
-  <form>
+  <form @submit.prevent="onSubmit">
     <div class="form-control" :class="{invalid: fError}">
       <label for="fio">ФИО</label>
-      <input type="text" id="fio">
-      <small v-if="fError">{{fio}}</small>
+      <input type="text" id="fio" v-model="fio" @blur="fBlur">
+      <small v-if="fError">{{ fError }}</small>
     </div>
 
-    <div class="form-control">
+    <div class="form-control" :class="{invalid: pError}">
       <label for="phone">Телефон</label>
-      <input type="text" id="phone">
+      <input type="text" id="phone" v-model="phone" @blur="pBlur">
+      <small v-if="pError">{{ pError }}</small>
     </div>
 
-    <div class="form-control">
+    <div class="form-control" :class="{invalid: aError}">
       <label for="amount">Сумма</label>
-      <input type="number" id="amount">
+      <input type="number" id="amount" v-model.number="amount" @blur="aBlur">
+      <small v-if="aError">{{ aError }}</small>
     </div>
 
     <div class="form-control">
       <label for="amount">Статус</label>
-      <select id="status">
-
+      <select id="status" v-model="status">
+        <option value="done">Завершен</option>
+        <option value="cancelled">Отменён</option>
+        <option value="active">Активен</option>
+        <option value="pending">Выполняется</option>
       </select>
     </div>
 
+    <button class="btn primary" :disabled="isSubmitting">Создать</button>
   </form>
 </template>
 
 <script>
-import {useRequestForm} from "@/use/request-form";
+import {useRequestForm} from "../../use/request-form";
+
 export default {
-  setup() {
+  emits: ['created'],
+  setup(_, {emit}) {
+    const submit = async values => {
+      console.log(values)
+      emit('created')
+    }
     return {
-       ...useRequestForm()
+      ...useRequestForm(submit)
     }
   }
 }
