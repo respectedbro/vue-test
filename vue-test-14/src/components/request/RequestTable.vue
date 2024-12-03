@@ -1,7 +1,6 @@
 <template>
-  <h4 v-if="!requests || requests.length === 0" class="text-center">Заявок пока нет</h4>
+  <h4 v-if="requests.length === 0" class="text-center">Заявок пока нет</h4>
   <table v-else class="table">
-    <pre>{{requests}}</pre>
     <thead>
     <tr>
       <th>#</th>
@@ -17,12 +16,12 @@
       <td>{{ idx + 1 }}</td>
       <td>{{ r.fio }}</td>
       <td>{{ r.phone }}</td>
-      <td>{{ r.amount }}</td>
-      <td>{{ r.status }}</td>
+      <td>{{ currency(r.amount) }}</td>
+      <td><AppStatus :type="r.status"/></td>
       <td>
-        <router-link v-slot="{navigate}" custom :to="{name: 'Request', params: {id: r.id }}">
+        <router-view v-slot="{navigate}"  :to="{name: 'Request', params: {id: r.id }}">
           <button class="btn primary" @click="navigate">Открыть</button>
-        </router-link>
+        </router-view>
       </td>
 
     </tr>
@@ -30,11 +29,17 @@
   </table>
 </template>
 
-<script>
 
+<script>
+import {currency} from "@/utils/currency";
+import AppStatus from "@/components/ui/AppStatus.vue";
 
 export default {
-  props: ['requests']
+  components: {AppStatus},
+  props: ['requests'],
+  setup() {
+    return {currency}
+  }
 }
 </script>
 

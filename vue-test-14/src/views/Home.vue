@@ -6,7 +6,7 @@
     </template>
 
 
-    <request-table :requests="[]"></request-table>
+    <request-table :requests="requests"></request-table>
 
     <teleport to="body">
       <app-modal v-if="modal" title="Создать заявку" @close="modal = false">
