@@ -38,7 +38,6 @@ export default {
             const token = store.getters['auth/token']
             const {data} = await axios.get(`/request.json?auth=${token}`)
             const requests = Object.keys(data).map(id => ({...data[id], id}))
-            console.log(data)
             commit('setRequests', requests)
          } catch (e) {
             dispatch('setMessage', {
