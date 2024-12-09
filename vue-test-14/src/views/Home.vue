@@ -38,14 +38,26 @@ export default {
     const filter = ref({})
 
 
-
     onMounted(async () => {
       loading.value = true
       await store.dispatch('request/load')
       loading.value = false
     })
 
-    const requests = computed(() => store.getters['request/requests'])
+    const requests = computed(() => store.getters['request/requests']
+        .filter(request => {
+          if (filter.value.name) {
+            return request.fio.includes(filter.value.name)
+          }
+          return request
+        })
+        .filter(request => {
+          if (filter.value.status) {
+            return filter.value.status === request.status
+          }
+          return request
+        })
+    )
 
     return {
       modal,

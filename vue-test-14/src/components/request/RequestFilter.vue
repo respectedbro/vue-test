@@ -1,7 +1,7 @@
 <template>
   <div class="filter">
     <div class="form-control">
-      <input type="text" placeholder="Начтине писать имя" v-model="name">
+      <input type="text" placeholder="Впишите имя" v-model="name">
     </div>
     <div class="form-control">
       <select v-model="status">
@@ -12,12 +12,13 @@
         <option value="pending">Выполняется</option>
       </select>
     </div>
+    <button class=" btn warning" v-if="isActive" @click="reset">Очистить</button>
 
   </div>
 </template>
 
 <script>
-import {ref, watch} from "vue";
+import {ref, watch, computed} from "vue";
 
 export default {
   emits: ['update:modelValue'],
@@ -33,9 +34,16 @@ export default {
       })
     })
 
+    const isActive = computed(() => name.value || status.value)
+
     return {
       name,
-      status
+      status,
+      isActive,
+      reset: () => {
+        name.value = ''
+        status.value = null
+      }
     }
   }
 }
