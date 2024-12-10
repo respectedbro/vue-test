@@ -4,4 +4,4 @@ $env:NODE_OPTIONS="--openssl-legacy-provider"
 npm run serve
 
 
-Practic/ 02:57:00 => g/
+Practic/ 03:10:00 => g/
